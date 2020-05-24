@@ -28,7 +28,9 @@ export class HomePacienteComponent implements OnInit {
   openMap() {
     navigator.geolocation.getCurrentPosition(pos => {
       const parameter = pos.coords.latitude + ',' + pos.coords.longitude;
-      window.open('https://www.google.com/maps/search/?api=1&query=' + parameter);
+      const xx = 'https://app.powerbi.com/view?r=eyJrIjoiMjgwZDYxMDItMDBmNC00ZWE2LWE0ZDEtMWVkNzY3OTc5NzA5IiwidCI6IjE2YzFkZTc5LWEyNjUtNDJjZS05OGMyLTk1NGFlYzNhZjY1MSJ9';
+      // window.open('https://www.google.com/maps/search/?api=1&query=' + parameter);
+      window.open(xx);
     });
   }
 
