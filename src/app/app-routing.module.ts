@@ -1,3 +1,4 @@
+import { ChatComponent } from './components/area-logada/chat/chat.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path: 'cadastro', component: CadastroComponent},
   {path: 'home-medico', component: HomeMedicoComponent},
   {path: 'home-paciente', component: HomePacienteComponent},
+  {path: 'chat', component: ChatComponent},
   {path: '', redirectTo: '/login', pathMatch: 'full'}
 ];
 

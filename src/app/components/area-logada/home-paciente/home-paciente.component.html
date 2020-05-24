@@ -1,1 +1,33 @@
-<p>home-paciente works!</p>
+ <!-- <div class="container">  -->
+
+  <p class="h4 mb-4">Olá xxxxxxxx, como você está ? </p>
+
+
+<ngb-tabset [destroyOnHide]="false" (tabChange)="changeTab($event)">
+
+    <ngb-tab title="Minha saúde">
+      <ng-template ngbTabContent>
+        <p>
+
+        </p>
+      </ng-template>
+    </ngb-tab>
+
+    <ngb-tab [id]="1">
+      <ng-template ngbTabTitle >Meu medico</ng-template>
+      <ng-template ngbTabContent>
+
+          <p>Status medico:
+              <span style="color: red;"> Offline </span>
+          </p>
+
+          <button [routerLink]="['/chat']"> Chat com medico </button>
+
+      </ng-template>
+    </ngb-tab>
+
+    <ngb-tab [id]="2">
+      <ng-template ngbTabTitle>Meu Leito</ng-template>
+    </ngb-tab>
+
+  </ngb-tabset>

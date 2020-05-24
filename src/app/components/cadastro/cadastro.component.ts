@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild  } from '@angular/core';
+import { NgbDateStruct, NgbCalendar, NgbDatepicker } from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-cadastro',
@@ -7,9 +9,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CadastroComponent implements OnInit {
 
-  constructor() { }
+
+  model: NgbDateStruct;
+  date: { year: number, month: number };
+
+  dp: NgbDatepicker;
+
+  constructor(private calendar: NgbCalendar) { }
 
   ngOnInit() {
+  }
+
+
+  selectToday() {
+    this.model = this.calendar.getToday();
+  }
+
+  setCurrent() {
+    this.dp.navigateTo();
+  }
+
+  setDate() {
+    this.dp.navigateTo({ year: 2013, month: 2 });
+  }
+
+  navigateEvent(event) {
+    this.date = event.next;
   }
 
 }
