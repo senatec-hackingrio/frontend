@@ -8,21 +8,31 @@ import { Component, OnInit } from '@angular/core';
 export class HomePacienteComponent implements OnInit {
 
   hudson: string;
+  latitude: any;
+  longitude: any;
+
+
   constructor() { }
 
   ngOnInit() {
   }
 
-  changeTab(event) {
-    console.log(this.hudson);
-    console.log(event);
-    if (event.nextId === 1) {
-       // alert('fOI 0');
-    } else if (event.nextId === 2) {
-      window.open('https://maps.google.com?q=760+West+Genesee+Street+Syracuse+NY+13204');
-      return;
+  async changeTab(event) {
+
+    if (event.nextId === 2) {
+      this.openMap();
     }
+}
+
+
+  openMap() {
+    navigator.geolocation.getCurrentPosition(pos => {
+      const parameter = pos.coords.latitude + ',' + pos.coords.longitude;
+      window.open('https://www.google.com/maps/search/?api=1&query=' + parameter);
+    });
+  }
 
 }
 
-}
+
+
