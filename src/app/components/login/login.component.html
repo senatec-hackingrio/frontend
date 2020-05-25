@@ -1,43 +1,33 @@
 <!-- Default form login -->
-<form class="text-center border border-light p-5">
+<form [formGroup]="formGroup"
+      (ngSubmit)="onSubmit(formGroup.value)"
+      class="text-center border border-light p-5">
 
 
-  <p class="h4 mb-4">Onde tem leito?</p>
+  <p class="h3 mb-4"><b>Onde tem leito?</b></p>
 
   <!-- Email -->
   <input type="text"
-          id="login"
+          formControlName="login"
           class="form-control mb-4"
           placeholder="CPF">
 
   <!-- Password -->
   <input type="password"
-          id="defaultLoginFormPassword"
+          formControlName="senha"
           class="form-control mb-4"
           placeholder="Senha">
 
-  <!--
-  <div class="d-flex justify-content-around">
-
-    <div>
-
-      <mdb-checkbox [default]="true">Remember me</mdb-checkbox>
-    </div>
-    <div>
-
-      <a href="">Forgot password?</a>
-    </div>
-  </div>
-  -->
-
   <!-- Sign in button -->
   <!-- <button mdbBtn color="info" block="true" class="my-4" type="submit">Entrar</button> -->
-  <button [routerLink]="['/home-paciente']" type="button" class="btn btn-primary btn-lg btn-block">Entrar</button>
+  <button  type="submit" class="btn btn-primary btn-lg btn-block">Entrar</button>
 
   <!-- Register -->
-  <p>Não te cadastro?
-    <a [routerLink]="['/cadastro']"> Registre-se </a>
-  </p>
+  <div class="registro">
+    <p>Não te cadastro?
+      <a [routerLink]="['/cadastro']"> Registre-se </a>
+    </p>
+  </div>
 
 
 

@@ -1,33 +1,36 @@
  <!-- <div class="container">  -->
 
-  <p class="h4 mb-4">Olá xxxxxxxx, como você está ? </p>
+  <div class="my-5 text-center titulo">
+    <p class="h4 mb-4"><b>Olá {{ nome }}, como você está ? </b></p>
+  </div>
 
-
-<ngb-tabset [destroyOnHide]="false" (tabChange)="changeTab($event)">
+<ngb-tabset [destroyOnHide]="false" (tabChange)="changeTab($event)" class="tabset1">
 
     <ngb-tab title="Minha saúde">
       <ng-template ngbTabContent>
 
-        <form class="">
+        <form [formGroup]="formGroup"
+            (ngSubmit)="onSubmit(formGroup.value)"
+            class="border border-light p-5">
 
           <div class="form-group row">
             <label for="inputPassword" class="col-sm-3 col-form-label">Pressão arterial</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" id="frequenciaArterial">
+              <input type="text" class="form-control" formControlName="pressaoArterial">
             </div>
           </div>
 
           <div class="form-group row">
             <label for="inputPassword" class="col-sm-3 col-form-label">Frequencia cardiaca</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" id="frequenciaCardiaca">
+              <input type="text" class="form-control" formControlName="frequenciaCardiaca">
             </div>
           </div>
 
           <div class="form-group row">
             <label for="inputPassword" class="col-sm-3 col-form-label">Frequencia respiratoria</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" id="frequnciaRespiratoria">
+              <input type="text" class="form-control" formControlName="frequenciaRespitoria">
             </div>
           </div>
 
@@ -40,37 +43,22 @@
 
 
         <div class="table-responsive">
-          <table class="table">
+          <table class="table table-striped">
             <thead>
               <tr>
-                <th scope="col">#</th>
+
                 <th scope="col">Data</th>
-                <th scope="col">Pressão arterial</th>
-                <th scope="col">Frequencia cardiaca</th>
-                <th scope="col">Frequencia respiratoria</th>
+                <th scope="col">Arterial</th>
+                <th scope="col">Cardiaca</th>
+                <th scope="col">Respiratoria</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>19/05/2020</td>
-                <td>30</td>
-                <td>60</td>
-                <td>100</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>12/03/2020</td>
-                <td>21</td>
-                <td>400</td>
-                <td>109</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>01/02/2020</td>
-                <td>12</td>
-                <td>3321</td>
-                <td>12332</td>
+              <tr *ngFor="let saude of Saudes">
+                <td>-</td>
+                <td>{{saude.pressaoArterial}}</td>
+                <td>{{saude.frequenciaCardiaca}}</td>
+                <td>{{saude.frequenciaRespitoria}}</td>
               </tr>
             </tbody>
           </table>
@@ -85,23 +73,37 @@
       <ng-template ngbTabTitle >Meu medico</ng-template>
       <ng-template ngbTabContent>
 
-          <p>Status medico:
-              <span style="color: red;"> Offline </span>
-          </p>
+          <div class="chat-medico">
+            <p>Status medico:
+                <span style="color: red;"> Offline </span>
+           </p>
 
-          <button [routerLink]="['/chat']"> Chat com medico </button>
 
+            <button class="btn btn-primary" [routerLink]="['/chat']"> Chat com medico </button>
+        </div>
       </ng-template>
     </ngb-tab>
 
-    <ngb-tab [id]="2">
+    <!--<ngb-tab [id]="2">-->
+    <ngb-tab>
       <ng-template ngbTabTitle>Meu Leito</ng-template>
       <ng-template ngbTabContent>
+
+        <iframe width="800" height="600" src="https://app.powerbi.com/view?r=eyJrIjoiYjlhMDBlY2MtZmU3Yy00N2M2LTljNGEtYjk2N2JmOGJlOWY4IiwidCI6IjE2YzFkZTc5LWEyNjUtNDJjZS05OGMyLTk1NGFlYzNhZjY1MSJ9" frameborder="0" allowFullScreen="true"></iframe>
+
+
+
+        <!--
         Caso o mapa não tenha aberto,
         <a [routerLink]="" (click)="openMap()">clique aqui</a>
+        -->
+
+
       </ng-template>
     </ngb-tab>
 
   </ngb-tabset>
+
+
 
 

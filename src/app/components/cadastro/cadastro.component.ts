@@ -1,5 +1,9 @@
 import { Component, OnInit, ViewChild  } from '@angular/core';
-import { NgbDateStruct, NgbCalendar, NgbDatepicker } from '@ng-bootstrap/ng-bootstrap';
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UsuarioService } from '../../shared/service/usuario.service';
+import {Router} from '@angular/router';
+
+
 
 
 @Component({
@@ -9,32 +13,41 @@ import { NgbDateStruct, NgbCalendar, NgbDatepicker } from '@ng-bootstrap/ng-boot
 })
 export class CadastroComponent implements OnInit {
 
+  formGroup;
 
-  model: NgbDateStruct;
-  date: { year: number, month: number };
+  constructor(
+    private formBuilder: FormBuilder,
+    private usuarioService: UsuarioService,
+    private router: Router
+    ) {
 
-  dp: NgbDatepicker;
+    this.formGroup = this.formBuilder.group({
+      nomeCompleto: '',
+      cpf: '',
+      senhaAcesso: '',
+      email: '',
+      telefone: '',
+      endereco: '',
+      complemento: '',
+      cep: ''
+    });
 
-  constructor(private calendar: NgbCalendar) { }
+   }
 
   ngOnInit() {
   }
 
+  onSubmit(formData) {
 
-  selectToday() {
-    this.model = this.calendar.getToday();
-  }
-
-  setCurrent() {
-    this.dp.navigateTo();
-  }
-
-  setDate() {
-    this.dp.navigateTo({ year: 2013, month: 2 });
-  }
-
-  navigateEvent(event) {
-    this.date = event.next;
+    this.usuarioService.novoUsuario(formData)
+    .pipe()
+    .subscribe(
+      res => {
+        // if (res.status === 201) {
+          this.router.navigate(['/login']);
+        // }
+      }
+    );
   }
 
 }
